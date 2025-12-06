@@ -24,11 +24,13 @@ export function renderHeader(
 
   const createBreadcrumbLink = (
     breadcrumb: { title: string; pos: number | null },
-    hidden = false
+    options: { hidden?: boolean; isLast?: boolean } = {}
   ) => {
+    const { hidden = false, isLast = false } = options;
     const b = doc.createElement("a");
     b.classList.add("zoom-plugin-title");
     if (hidden) b.classList.add("zoom-plugin-hidden");
+    if (isLast) b.classList.add("zoom-plugin-title-current");
     b.dataset.pos = String(breadcrumb.pos);
     b.appendChild(doc.createTextNode(breadcrumb.title));
     b.title = breadcrumb.title;
@@ -104,7 +106,11 @@ export function renderHeader(
       h.appendChild(expandBtn);
     }
 
-    const link = createBreadcrumbLink(breadcrumbs[i], isHidden);
+    const isLast = i === breadcrumbs.length - 1;
+    const link = createBreadcrumbLink(breadcrumbs[i], {
+      hidden: isHidden,
+      isLast,
+    });
     if (isHidden) hideableElements.push(link);
     h.appendChild(link);
   }
@@ -121,6 +127,17 @@ export function renderHeader(
       toggleExpand(false);
     });
     h.appendChild(collapseBtn);
+
+    // Auto-collapse when clicking outside the header
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        !h.contains(e.target as Node) &&
+        h.classList.contains("zoom-plugin-expanded")
+      ) {
+        toggleExpand(false);
+      }
+    };
+    doc.addEventListener("click", handleClickOutside);
   }
 
   return h;

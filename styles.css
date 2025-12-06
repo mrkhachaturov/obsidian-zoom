@@ -17,15 +17,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 150px;
+  max-width: 100px;
   flex-shrink: 1;
-  transition: color 0.15s ease, opacity 0.2s ease, max-width 0.25s ease;
+  transition: color 0.15s ease, opacity 0.2s ease, max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
 }
 
 .zoom-plugin-title:hover {
   color: var(--text-normal);
   text-decoration: underline;
+  max-width: 600px;
+  flex-shrink: 0;
 }
 
 .zoom-plugin-title.zoom-plugin-hidden {
@@ -33,6 +35,11 @@
   opacity: 0;
   padding: 0;
   pointer-events: none;
+}
+
+.zoom-plugin-title-current {
+  max-width: none;
+  flex-shrink: 1;
 }
 
 .zoom-plugin-delimiter {
