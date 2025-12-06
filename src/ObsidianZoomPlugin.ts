@@ -115,6 +115,10 @@ export default class ObsidianZoomPlugin extends Plugin {
     this.zoomFeature.zoomOut(getEditorViewFromEditor(editor));
   }
 
+  public zoomOutOneLevel(editor: Editor) {
+    this.zoomFeature.zoomOutOneLevel(getEditorViewFromEditor(editor));
+  }
+
   public zoomIn(editor: Editor, line: number) {
     const cm = getEditorViewFromEditor(editor);
     const pos = cm.state.doc.line(line + 1).from;

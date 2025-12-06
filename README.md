@@ -40,6 +40,7 @@ Hide everything except the list/heading and its content.
 | ---------------------------- | :-----------------------------------------: | :--------------------------------------------: |
 | Zoom in                      |         <kbd>Ctrl</kbd><kbd>.</kbd>         |         <kbd>Command</kbd><kbd>.</kbd>         |
 | Zoom out the entire document | <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>.</kbd> | <kbd>Command</kbd><kbd>Shift</kbd><kbd>.</kbd> |
+| Zoom out one level           | <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>.</kbd>   | <kbd>Command</kbd><kbd>Option</kbd><kbd>.</kbd> |
 
 | Setting                                | Default value |
 | -------------------------------------- | :-----------: |
