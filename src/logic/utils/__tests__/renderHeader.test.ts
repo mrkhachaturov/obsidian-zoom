@@ -45,7 +45,9 @@ test("should render collapsed breadcrumbs with 4+ items", () => {
     onClick: () => {},
   });
 
-  const titles = h.querySelectorAll(".zoom-plugin-title");
+  const titles = h.querySelectorAll(
+    ".zoom-plugin-title:not(.zoom-plugin-hidden)"
+  );
   // Collapsed: root / ··· / second-to-last / last = 3 visible titles
   expect(titles.length).toBe(3);
   expect(titles[0].textContent).toBe("Document");
@@ -69,9 +71,13 @@ test("should expand breadcrumbs when clicking expand button", () => {
     onClick: () => {},
   });
 
-  // Before expand: root, …, second-to-last, last = 3 titles
-  expect(h.querySelectorAll(".zoom-plugin-title").length).toBe(3);
-  expect(h.querySelector(".zoom-plugin-expand-btn")).not.toBeNull();
+  // Before expand: root, …, second-to-last, last = 3 visible titles
+  expect(
+    h.querySelectorAll(".zoom-plugin-title:not(.zoom-plugin-hidden)").length
+  ).toBe(3);
+  expect(
+    h.querySelector(".zoom-plugin-expand-btn:not(.zoom-plugin-hidden)")
+  ).not.toBeNull();
 
   // Click expand
   const expandBtn = h.querySelector<HTMLButtonElement>(
@@ -80,9 +86,15 @@ test("should expand breadcrumbs when clicking expand button", () => {
   expandBtn?.click();
 
   // After expand: all 5 titles visible
-  expect(h.querySelectorAll(".zoom-plugin-title").length).toBe(5);
-  expect(h.querySelector(".zoom-plugin-expand-btn")).toBeNull();
-  expect(h.querySelector(".zoom-plugin-collapse-btn")).not.toBeNull();
+  expect(
+    h.querySelectorAll(".zoom-plugin-title:not(.zoom-plugin-hidden)").length
+  ).toBe(5);
+  expect(
+    h.querySelector(".zoom-plugin-expand-btn:not(.zoom-plugin-hidden)")
+  ).toBeNull();
+  expect(
+    h.querySelector(".zoom-plugin-collapse-btn:not(.zoom-plugin-hidden)")
+  ).not.toBeNull();
 });
 
 test("should collapse breadcrumbs when clicking collapse button", () => {
@@ -102,16 +114,22 @@ test("should collapse breadcrumbs when clicking collapse button", () => {
   );
   expandBtn?.click();
 
-  expect(h.querySelectorAll(".zoom-plugin-title").length).toBe(4);
+  expect(
+    h.querySelectorAll(".zoom-plugin-title:not(.zoom-plugin-hidden)").length
+  ).toBe(4);
 
   // Now collapse
   const collapseBtn = h.querySelector<HTMLButtonElement>(
-    ".zoom-plugin-collapse-btn"
+    ".zoom-plugin-collapse-btn:not(.zoom-plugin-hidden)"
   );
   collapseBtn?.click();
 
-  expect(h.querySelectorAll(".zoom-plugin-title").length).toBe(3);
-  expect(h.querySelector(".zoom-plugin-expand-btn")).not.toBeNull();
+  expect(
+    h.querySelectorAll(".zoom-plugin-title:not(.zoom-plugin-hidden)").length
+  ).toBe(3);
+  expect(
+    h.querySelector(".zoom-plugin-expand-btn:not(.zoom-plugin-hidden)")
+  ).not.toBeNull();
 });
 
 test("should handle click on document link", () => {
