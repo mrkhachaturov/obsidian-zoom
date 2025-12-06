@@ -46,6 +46,10 @@ Hide everything except the list/heading and its content.
 | -------------------------------------- | :-----------: |
 | Zooming in when clicking on the bullet |    `true`     |
 
+### Compact breadcrumb navigation
+
+When zoomed deep into nested content, the breadcrumb header automatically collapses to show only the root, the last two levels, and an "…" button in between. Click "…" to expand and see the full path. Each breadcrumb shows a tooltip with its full title on hover.
+
 ### Debug mode
 
 Open DevTools (Command+Option+I or Control+Shift+I) to copy the debug logs.
